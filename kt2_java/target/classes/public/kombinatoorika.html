@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Kombinatoorika Server</title>
+    <script>
+        let xhr=new XMLHttpRequest()
+        xhr.onreadystatechange=getResults
+        function kombinatsioon(){
+            let nr = document.getElementById("input1").value
+            let mood = document.getElementById("input2").value
+            if (nr>=mood && nr && mood && mood >=0) {
+                let p2ring="number="+nr+"&moodustis="+mood
+                xhr.open("GET", "kombinatsioon?"+p2ring, true)
+                xhr.send(true)
+                setTimeout(korrad, 300)
+            }else{
+                document.getElementById("vastus").innerHTML = "Kontrolli andmeid"
+            }
+
+        }
+        function getResults(){
+            if(xhr.readyState==4){
+                document.getElementById("vastus").innerHTML=xhr.responseText
+            }
+            if(xhr2.readyState==4){
+                document.getElementById("korrad").innerHTML=xhr2.responseText
+            }
+        }
+        let xhr2 = new XMLHttpRequest()
+        xhr2.onreadystatechange=getResults
+        function korrad(){
+            p2ring="number="+document.getElementById("input1").value+"&moodustis="+document.getElementById("input2").value
+            xhr2.open("GET", "korrad?"+p2ring, true)
+            xhr2.send(true)
+        }
+        
+</script>
+<style>
+</style>
+</head>
+<body>
+        <h1>Kombinatsioonid n tähest m kaupa</h1>
+        <img src="algus.png" alt="valem1"><img src="valem.png" alt=""><br>
+    <div id="macform">
+        <form action="" method="get"></form>
+        <span>n: </span><input type="text" value="" id="input1" placeholder="abcde"><br>
+        <span>m: </span><input type="text" value="" id="input2" placeholder="3"><br>
+        <input type="button" id="arvuta" value="Arvuta" onclick="kombinatsioon()"><br>
+        <span>Vastus: </span><div id="vastus"></div><br>
+        <span>Seda kombinatsiooni on otsitud </span><span id="korrad"></span><span> korda</span>
+
+
+        
+    </div>
+</body>
+</html> 
