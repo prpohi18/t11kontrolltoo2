@@ -1,4 +1,5 @@
 import ee.tlu.taavim.kontroll2.Aine;
+import ee.tlu.taavim.kontroll2.AineMassiivist;
 import ee.tlu.taavim.kontroll2.Ioon;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -34,5 +35,27 @@ public class Testid {
         System.out.println(a1.kysiNimetus());
         assertEquals(0.0, a1.kysiMolekulMass(), 0.1);
         assertNull(a1.kysiNimetus());
+    }
+    
+    @Test
+    public void kaksIooni(){
+        Ioon[] ioon = new Ioon[2];
+        ioon[0] = new Ioon("Ca", 1, 1);
+        ioon[1] = new Ioon("Cl", 1, -1);
+        
+        AineMassiivist a = new AineMassiivist(ioon);
+        assertEquals("CaCl",a.kysiNimetus());
+    }
+    
+    @Test
+    public void kolmIooni(){
+        Ioon[] ioon = new Ioon[3];
+        ioon[0] = new Ioon("Ca", 2, 2);
+        ioon[1] = new Ioon("Cl", 1, -1);
+        ioon[2] = new Ioon("Cl", 1, -1);
+        
+        AineMassiivist a = new AineMassiivist(ioon);
+        assertEquals("CaCl2",a.kysiNimetus());
+        assertEquals(4.0,a.kysiMolekulMass(),0.1);
     }
 }
