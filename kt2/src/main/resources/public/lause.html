@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>KT2</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script>
+            let xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = kuvaVastus;
+            
+            function sisestaLause() {
+                const sisend = document.getElementById("lause").value;
+                const aadress = "/atahed?lause="+sisend;
+                xhr.open("GET", aadress, true);
+                xhr.send();
+            }
+            
+            function kuvaVastus() {
+                if (xhr.readyState === 4) {
+                    const map = xhr.responseText;
+                    const container = document.querySelector('#container');
+                    const li = document.createElement('li');
+                    let kokku = 0;
+                    for (let x in map) {
+                        li.innerText = x +": " + map[x]
+                        kokku += map[x];
+                        container.appendChild(li);
+                    }
+                    
+                    document.getElementById("vastus").innerHTML = "Lauses a-tähti: " + kokku;
+                }
+            }
+        </script>
+    </head>
+    <body>
+            <label>Sinu lause:</label>
+            <input type="text" id="lause">
+            <input type="button" value="Saada" onclick="sisestaLause()"/>
+            <p id="vastus"></p>
+            <ul id="container"></ul>
+            
+    </body>
+</html>
