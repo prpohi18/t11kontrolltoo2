@@ -1,0 +1,45 @@
+
+<html>
+    <head>
+        <title>Ioonid ja värk</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script>
+            let xhr = new XMLHttpRequest();
+            xhr.onreadystatechange=kuvaVastus;
+            
+            function saadaAndmed(){
+            let parameetrid="?nimetus="+document.getElementById("kast1").value+"&mass="+document.getElementById("kast2").value+
+            "&laeng="+document.getElementById("kast3").value;
+            
+            xhr.open("GET", "/ion/"+parameetrid, true);
+            xhr.send(true);
+            }
+            function kuvaVastus(){
+                if(xhr.readyState==4){
+                document.getElementById("vastus").innerHTML = xhr.responseText;
+                }
+            }
+            function refresh(){
+                xhr.open("GET", "/ionlist", true);
+                xhr.send(true)
+            }
+            function aine(){
+                xhr.open("GET", "/aine", true);
+                xhr.send(true);
+            }
+            
+            </script>
+    </head>
+    <body>
+        <div>
+            <span>Nimetus</span><input type="text" id="kast1"><br>
+            <span>Mass</span><input type="text" id="kast2"><br>
+            <span>Laeng</span><input type="text" id="kast3"><br>
+            <input type="button" id="button" value="Submit" onclick="saadaAndmed()">
+            <input type="button" id="button2" value="refresh" onclick="refresh()">
+            <input type="button" id="button2" value="Tee aine" onclick="aine()">
+        </div>
+        <div id="vastus"></div>
+    </body>
+</html>
