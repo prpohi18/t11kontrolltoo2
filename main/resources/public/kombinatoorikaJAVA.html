@@ -1,0 +1,62 @@
+<!doctype html>
+<html>
+	<head>
+		<title>Kombinatsioonide leidmine</title>
+		<meta charset="utf-8" />
+		<style type="text/css">
+			.input{padding: 10px; margin:10px;}
+			.button{padding:10px; margin:10px; width:150px;}
+			#result{
+				border-style: inset;
+				-webkit-appearance: textfield;
+				display: inline-block;
+				font: 400 13.3333px Arial;	
+				margin-left: 10px;
+				margin-bottom: -15px;
+				padding: 10px !important;
+				width: 167px !important;
+				height: 13px !important; 
+				background: #efefef;
+			}
+
+		</style>
+		<script>
+		let xhr=new XMLHttpRequest()
+		xhr.onreadystatechange = dataArrive
+		
+		window.onload = function() {
+			const result = document.getElementById("result")
+			const find = document.getElementById("find")
+			const num1 = document.getElementById("num1")
+			const num2 = document.getElementById("num2")
+			
+			find.addEventListener("click", function() {
+				let check="/check?n="+parseInt(num1.value)+"&m="+parseInt(num2.value)
+				xhr.open("GET", check, true)
+				xhr.send()
+			})
+		}
+		
+		function dataArrive(){
+			if(xhr.readyState==4){
+				console.log(xhr.responseText)
+				if(xhr.responseText.endsWith("successful") || xhr.responseText.endsWith("deleted") || xhr.responseText.endsWith("found")){
+					//document.getElementById("info").innerHTML=xhr.responseText
+				} else {
+					//let obj=JSON.parse(xhr.responseText)
+					result.innerHTML = xhr.responseText
+				}
+			}
+		}
+		</script>
+	</head>
+	<body>
+		<h1>Kombinatsioonide leidmine</h1>
+		<div">
+			N = <input type="number" name="num1" class="input" id="num1">
+			M = <input type="number" name="num2" class="input" id="num2">
+			<button type="button" class="button" id="find">Arvuta</button><br>
+			Vastus = <label id="result"></label>
+		</div>
+	</body>
+</html>
