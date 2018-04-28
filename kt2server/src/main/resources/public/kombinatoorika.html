@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Kombinatoorika Server</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+        crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
+    <script>
+        let xhr = new XMLHttpRequest()
+        xhr.onreadystatechange = getResults
+        function kombinatsioon() {
+            let n = document.getElementById("number").value
+            let m = document.getElementById("moodustis").value
+            if (n >= m && n && m && m >= 0) {
+                let query = "n=" + n + "&m=" + m
+                xhr.open("GET", "k?" + query, true)
+                xhr.send(true)
+                setTimeout(counter, 300)
+            } else {
+                document.getElementById("ans").innerHTML = "Antud andmetes on midagi valesti"
+            }
+
+        }
+        function getResults() {
+            if (xhr.readyState == 4) {
+                document.getElementById("ans").innerHTML = xhr.responseText
+            }
+            if (xhr2.readyState == 4) {
+                document.getElementById("counter").innerHTML = xhr2.responseText
+            }
+        }
+        let xhr2 = new XMLHttpRequest()
+        xhr2.onreadystatechange = getResults
+        function counter() {
+            query = "n=" + document.getElementById("number").value + "&m=" + document.getElementById("moodustis").value
+            xhr2.open("GET", "c?" + query, true)
+            xhr2.send(true)
+        }
+
+    </script>
+    <style>
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <h1 class="col-md-7">Kombinatoorika</h1>
+        </div>
+        <img src="Algus.png" class="img-thumbnail" alt="">
+        <img src="Valem.PNG" class="img-thumbnail" alt="">
+        <br>
+        <form action="" method="get">
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <label for="number">N:</label>
+                    <input type="text" class="form-control" id="number" name="number" placeholder="tähed">
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <label for="moodustis">M:</label>
+                    <input type="text" class="form-control" id="moodustis" name="moodustis" placeholder="numbrid">
+                </div>
+            </div>
+            <input type="button" class="btn btn-default" id="calc" value="Kalkuleeri" onclick="kombinatsioon()">
+            <br>
+        </form>
+
+        <span>Vastus : </span>
+        <div id="ans"></div>
+        <span>Sama kombinatsiooni on ennem otsitud: </span>
+        <div id="counter"></div>
+    </div>
+</body>
+
+</html>
