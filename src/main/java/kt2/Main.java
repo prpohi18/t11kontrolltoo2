@@ -13,6 +13,9 @@ public class Main{
     JooneLiides k1=new Kordaja(3);
     System.out.println("6?"+k1.joon(2));
 
+    JooneLiides v2=new Vabaliige(3, 6);
+    System.out.println("12?"+v2.joon(2));
+
     JooneLiides v1=new Vabaliige(1, 2);
     int[] x = new int[]{1, 2, 3};
     int[] y = funktsioon(x,v1);
