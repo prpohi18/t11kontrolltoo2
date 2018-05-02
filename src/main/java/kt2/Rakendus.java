@@ -34,10 +34,10 @@ public class Rakendus{
       x1 += 1;
     }
     if (Integer.parseInt(b)==0) {
-      y = y + Arrays.toString(funktsioon(x, k1));
+      y = Arrays.toString(funktsioon(x, k1));
     } else {
       v1.vabaliige = Integer.parseInt(b);
-      y = y + Arrays.toString(funktsioon(x, v1));
+      y = Arrays.toString(funktsioon(x, v1));
     }
     return String.valueOf(y);
   }
