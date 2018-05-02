@@ -26,18 +26,18 @@ public class Testid{
 
   @Test
   public void y3x_kordaja(){
-    Kordaja k1=new Kordaja(2);
-    Kordaja k2=new Kordaja(7);
+    JooneLiides k1=new Kordaja(2);
+    JooneLiides k2=new Kordaja(7);
     assertEquals(6, k1.joon(3));
-    assertEquals(28, k2.joon(4));
+    assertEquals(14, k2.joon(2));
   }
 
 
   @Test
   public void vabaliige_kordaja(){
-    Vabaliige v1= new Vabaliige(2, 5); //y=2x+5
-    Vabaliige v2= new Vabaliige(3, 0); //y=3x
-    Vabaliige v3= new Vabaliige(3, 2); //y=3x+2
+    JooneLiides v1= new Vabaliige(2, 5); //y=2x+5
+    JooneLiides v2= new Vabaliige(3, 0); //y=3x
+    JooneLiides v3= new Vabaliige(3, 2); //y=3x+2
     assertEquals(9, v1.joon(2));
     assertEquals(15, v2.joon(5));
     assertEquals(5, v3.joon(1));
