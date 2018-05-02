@@ -25,6 +25,7 @@ public class Lause implements LauseInterf {
         return sõnad.length;
     }
     
+    @Override
     public Sõna[] getWords() {
         return sõnad;
     }

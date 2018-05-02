@@ -5,6 +5,8 @@
  */
 package ee.tlu.sl.kt2;
 
+import java.util.Arrays;
+
 /**
  *
  * @author if17
@@ -15,6 +17,6 @@ public class proov {
         Lause asd = new Lause("tere onu");
         System.out.println(asd.lause);
         System.out.println(asd.getWordCount());
-        System.out.println(asd.getWords());
+        System.out.println(asd.getWords()[0].sisend);
     }
 }

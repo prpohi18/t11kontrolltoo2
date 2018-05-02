@@ -9,23 +9,25 @@
             xhr.onreadystatechange = kuvaVastus;
             
             function sisestaLause() {
-                const sisend = document.getElementById("lause").value;
+                const sisend = document.getElementById("lause").value.trim();
                 const aadress = "/atahed?lause="+sisend;
                 xhr.open("GET", aadress, true);
                 xhr.send();
             }
             
             function kuvaVastus() {
+                const container = document.querySelector('#container');
+                container.innerHTML = "";
                 if (xhr.readyState === 4) {
-                    const map = xhr.responseText;
-                    const container = document.querySelector('#container');
-                    const li = document.createElement('li');
+                    const arr = JSON.parse(xhr.responseText);
                     let kokku = 0;
-                    for (let x in map) {
-                        li.innerText = x +": " + map[x]
-                        kokku += map[x];
+                    
+                    arr.forEach(function (a) {
+                        const li = document.createElement('li');
+                        li.innerText = a[0] +": " + a[1];
+                        kokku += parseInt(a[1]);
                         container.appendChild(li);
-                    }
+                    });
                     
                     document.getElementById("vastus").innerHTML = "Lauses a-tähti: " + kokku;
                 }

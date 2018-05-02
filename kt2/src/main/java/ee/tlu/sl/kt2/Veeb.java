@@ -11,14 +11,18 @@ import org.springframework.web.bind.annotation.RestController;
 public class Veeb {
     
     @RequestMapping("/atahed")
-    Map aTahed(String lause) {
-        Map<String,Long> map=new HashMap<>();  
+    String[][] aTahed(String lause) {
+        String[][] arr; 
         Lause l = new Lause(lause);
+        arr = new String[l.getWordCount()][l.getWordCount()];
+        int i = 0;
         for (Sõna s: l.getWords()) {
-            map.put(s.sisend, s.getLetter('a'));
+            arr[i][0] = s.sisend;
+            arr[i][1] = Long.toString(s.getLetter('a'));
+            i++;
         }
-        
-    } //http://localhost:8080/atahed?lause=mesilane%20aias
+        return arr;
+    } // http://localhost:8080/atahed?lause=mesilane%20aias
     
     public static void main(String[] arg){
          SpringApplication.run(Veeb.class, arg);
