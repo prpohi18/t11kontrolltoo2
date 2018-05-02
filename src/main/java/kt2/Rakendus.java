@@ -28,16 +28,15 @@ public class Rakendus{
     String y = "Võrrandi vastused y = ";
     int c = Integer.parseInt(x2)-Integer.parseInt(x1)+1;
     int[]x = new int[c];
-
+    
     for (int i = 0; i < c; i++) {
-      x[i] = Integer.parseInt(x1);
-      x1 += 1;
+      x[i] = Integer.parseInt(x1)+i;
     }
     if (Integer.parseInt(b)==0) {
-      y = Arrays.toString(funktsioon(x, k1));
+      y = y + Arrays.toString(funktsioon(x, k1));
     } else {
       v1.vabaliige = Integer.parseInt(b);
-      y = Arrays.toString(funktsioon(x, v1));
+      y = y + Arrays.toString(funktsioon(x, v1));
     }
     return String.valueOf(y);
   }
