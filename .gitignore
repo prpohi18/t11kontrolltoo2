@@ -1,6 +1,7 @@
 target/*
 .vscode
 .settings
-.project 
+.idea/*
+.project
 
 src/main/java/kt2/Selenide.java
