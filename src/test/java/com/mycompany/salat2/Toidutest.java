@@ -11,7 +11,7 @@ public class Toidutest {
     
     @Test
     public void lisamine() {
-        open("http://greeny.cs.tlu.ee:34221/Toiduleht.html");
+        open("http://greeny.cs.tlu.ee:34222/Toiduleht.html");
         $("#kast1").setValue("Kama");
         $("#kast2").setValue("30");
         $("#kast3").setValue("40");
