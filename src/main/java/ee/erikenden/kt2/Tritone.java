@@ -13,14 +13,15 @@ public class Tritone {
         this.base = base;
         this.majorThird = base + 4;
         this.perfectFifth = base + 7;
+        convertToMIDI(base, majorThird, perfectFifth);
     }
     public void convertToMIDI(int base, int majorThird, int perfectFifth){
         int baseDifferenceFromC = differenceFromC(base);
         int mtDifferenceFromC = differenceFromC(majorThird);
         int perfectDifferenceFromC = differenceFromC(perfectFifth);
-        //this.baseLet = ;
-        //this.mtLet = ;
-        //this.perfLet = ;
+        this.baseLet = convertToLetter(baseDifferenceFromC);
+        this.mtLet = convertToLetter(mtDifferenceFromC);
+        this.perfLet = convertToLetter(perfectDifferenceFromC);
     }
     public int differenceFromC(int note){
         return note - 60;
@@ -35,12 +36,13 @@ public class Tritone {
                     counter = 0;
                 } else if(differenceFromC > 0){
                     differenceFromC -= 1;
-                    System.out.println(differenceFromC);
                     counter++;
-                    System.out.println(noteLetters[counter]);
                 } else if (differenceFromC == 0){
-                    System.out.println("foundit");
-                    result = noteLetters[counter];
+                    if (counter == 0){
+                        result = noteLetters[11];
+                    } else {
+                        result = noteLetters[counter - 1];
+                    }
                     complete = 1;
                 }
             }
@@ -51,12 +53,13 @@ public class Tritone {
                     counter = 0;
                 } else if(differenceFromC > 0){
                     differenceFromC -= 1;
-                    System.out.println(differenceFromC);
                     counter++;
-                    System.out.println(noteLettersRev[counter]);
                 } else if (differenceFromC == 0){
-                    System.out.println("foundit");
-                    result = noteLettersRev[counter];
+                    if (counter == 0){
+                        result = noteLettersRev[11];
+                    } else {
+                        result = noteLettersRev[counter - 1];
+                    }
                     complete = 1;
                 }
             }
@@ -64,5 +67,19 @@ public class Tritone {
             result = "C";
         }
         return result;
+    }
+    public int convertToFreq(String noteLet){
+        int found = 0;
+        int counter = 0;
+        int resultFreq = 0;
+        while (found == 0){
+            if(noteLet == noteLetters[counter]){
+                resultFreq = 60 + counter;
+                found = 1;
+            } else {
+                counter++;
+            }
+        }
+        return resultFreq;
     }
 }

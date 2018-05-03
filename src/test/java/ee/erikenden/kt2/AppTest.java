@@ -26,5 +26,12 @@ public class AppTest
     public void testConvertToLetter(){
         Tritone tri = new Tritone(60);
         assertTrue(tri.convertToLetter(15) == "Eb");
+        assertTrue(tri.convertToLetter(-15) == "A");
+    }
+    @Test
+    public void testNoteLetter(){
+        Tritone tri = new Tritone(60);
+        assertTrue(tri.convertToFreq("C") == 60);
+        assertTrue(tri.convertToFreq("C#") == 61);
     }
 }
