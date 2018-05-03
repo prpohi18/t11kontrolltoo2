@@ -1,11 +1,13 @@
-package krislyn.kontrolltoo.test;
-
+import krislyn.kontrolltoo2.Alleelid;
+import krislyn.kontrolltoo2.Geenid;
+import org.junit.*;
+import static org.junit.Assert.*;
 
 public class GeeniTest {
+
+    @Test
+	public void contextLoads(){}
     
-    @RequestMapping
-    public void contextLoads(){}
-/*
     @Test
     public void alleeliTest(){
         Alleelid alleel1 = new Alleelid();
@@ -16,7 +18,6 @@ public class GeeniTest {
         Assert.assertEquals("Reesus", alleel1.getName());
         Assert.assertEquals(true, alleel1.getPositive());
     }
-
     @Test
     public void geeniTestidAuto(){
         Alleelid alleel1 = new Alleelid();
@@ -32,5 +33,6 @@ public class GeeniTest {
         Geenid.getAlleel2().setPositive(false);
         Geenid.setPositive();
         Assert.assertEquals(false, Geenid.getPositive());
-    } */
+    } 
+        
 }
