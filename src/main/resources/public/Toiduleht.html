@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Toidud</title>
+        <script>
+            let xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = kuvaVastus;
+            
+            function lisamine() {
+                let p2ring = "a=" + document.getElementById("kast1").value + "&b=" + document.getElementById("kast2").value + "&c=" + document.getElementById("kast3").value + "&d=" + document.getElementById("kast4").value;
+                xhr.open("GET", "lisamine?" + p2ring, true);
+                xhr.send(true);
+            }
+            
+            function eemaldamine() {
+                let p2ring = "nimetus=" + document.getElementById("kast5").value;
+                xhr.open("GET", "kustutamine?" + p2ring, true);
+                xhr.send(true);
+            }
+            
+            function vaataAndmeid() {
+                let p2ring = "nimetus=" + document.getElementById("kast6").value;
+                xhr.open("GET", "vaataAndmeid?" + p2ring, true);
+                xhr.send(true);
+            }
+            
+            function otsiRasv() {
+                let p2ring = "a=" + document.getElementById("kast7").value + "&b=" + document.getElementById("kast8").value;
+                xhr.open("GET", "otsiRasvajargi?" + p2ring, true);
+                xhr.send(true);
+            }
+            
+            function kuvaVastus() {
+                if (xhr.readyState == 4) {
+                    document.getElementById("vastus").innerHTML = xhr.responseText;
+                }
+            }
+        </script>
+    </head>
+    <body>
+        
+        <h1>Lisa toiduaine</h1>
+        <input type="text" placeholder="Nimetus" id="kast1"><br>
+        <input type="number" placeholder="Valk" id="kast2"><br>
+        <input type="number" placeholder="Rasv" id="kast3"><br>
+        <input type="number" placeholder="Sysivesik" id="kast4">
+        <input type="button" value="Lisa andmebaasi!" onclick="lisamine()" id="lisa"><br>
+        
+        <h1>Eemalda toiduaine</h1>
+        <input type="text" placeholder="Nimetus" id="kast5">
+        <input type="button" value="Eemalda andmebaasist!" onclick="eemaldamine()" id="eemalda"><br>
+        
+        <h1>Vaata toiduaine andmeid</h1>
+        <input type="text" placeholder="Nimetus" id="kast6">
+        <input type="button" value="Vaata andmeid!" onclick="vaataAndmeid()" id="vaata"><br>
+        
+        <h1>Otsi rasvaprotsendi vahemiku jargi</h1>
+        <input type="number" placeholder="Miinimum" id="kast7">
+        <input type="number" placeholder="Maksimum" id="kast8">
+        <input type="button" value="Otsi andmebaasist!" onclick="otsiRasv()" id="otsi"><br><br><br>
+        
+        <div id = "vastus">
+            Vastused
+        </div>
+    </body>
+</html>

@@ -1,0 +1,54 @@
+<html><head>
+        <title>Toidud</title>
+        <script>
+            let xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = kuvaVastus;
+            
+            function lisamine() {
+                let p2ring = "a=" + document.getElementById("kast1").value + "&b=" + document.getElementById("kast2").value + "&c=" + document.getElementById("kast3").value + "&d=" + document.getElementById("kast4").value;
+                xhr.open("GET", "lisamine?" + p2ring, true);
+                xhr.send(true);
+            }
+            
+            function eemaldamine() {
+                let p2ring = "nimetus=" + document.getElementById("kast5").value;
+                xhr.open("GET", "kustutamine?" + p2ring, true);
+                xhr.send(true);
+            }
+            
+            function vaataAndmeid() {
+                let p2ring = "nimetus=" + document.getElementById("kast6").value;
+                xhr.open("GET", "vaataAndmeid?" + p2ring, true);
+                xhr.send(true);
+            }
+            
+            function kuvaVastus() {
+                if (xhr.readyState == 4) {
+                    document.getElementById("vastus").innerHTML = xhr.responseText;
+                }
+            }
+        </script>
+    </head>
+    <body>
+        
+        <h1>Lisa toiduaine</h1>
+        <input placeholder="Nimetus" id="kast1" type="text"><br>
+        <input placeholder="Valk" id="kast2" type="number"><br>
+        <input placeholder="Rasv" id="kast3" type="number"><br>
+        <input placeholder="Sysivesik" id="kast4" type="number">
+        <input value="Lisa andmebaasi!" onclick="lisamine()" id="lisa" type="button"><br>
+        
+        <h1>Eemalda toiduaine</h1>
+        <input placeholder="Nimetus" id="kast5" type="text">
+        <input value="Eemalda andmebaasist!" onclick="eemaldamine()" type="button"><br>
+        
+        <h1>Vaata toiduaine andmeid</h1>
+        <input placeholder="Nimetus" id="kast6" style="" type="text">
+        <input value="Vaata andmeid!" onclick="vaataAndmeid()" type="button"><br><br><br>
+        
+        <div id="vastus">
+            Vastused
+        </div>
+    
+
+</body></html>
