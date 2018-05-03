@@ -48,6 +48,15 @@ public class AineMassiivist implements Ained {
 
     }
 
+    
+    
+    @Override
+    public String toString() {
+        return "AineMassiivist{" + "nimetus=" + nimetus + ", molekulMass=" + molekulMass + ", ioonid=" + ioonid + '}';
+    }
+
+    
+    
     @Override
     public String kysiNimetus() {
         return nimetus;

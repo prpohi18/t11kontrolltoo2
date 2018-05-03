@@ -58,4 +58,51 @@ public class Testid {
         assertEquals("CaCl2",a.kysiNimetus());
         assertEquals(4.0,a.kysiMolekulMass(),0.1);
     }
+    
+    @Test
+    public void test(){
+        String ioonid = "Ca2+,Cl-,Cl-";
+       
+        Ioon[] ioonideKogum = aineStringist(ioonid);
+        AineMassiivist a = new AineMassiivist(ioonideKogum);
+        assertEquals("CaCl2",a.kysiNimetus());
+        assertEquals(4.0,a.kysiMolekulMass(),0.1);
+    }
+    
+    
+    public Ioon[] aineStringist(String str){
+        String[] ioonidStr = str.split(",");
+        Ioon[] ioonid = new Ioon[ioonidStr.length];
+        int i = 0;
+        for (String ioonStr : ioonidStr) {
+            if(ioonStr.charAt(2)=='+'|| ioonStr.charAt(2)=='-'){
+                if(ioonStr.charAt(2)=='+'){
+                    Ioon ioon = new Ioon(ioonStr.substring(0,2), 1.0, 1);
+                    ioonid[i]= ioon;
+                    System.out.println(ioon.toString());
+                    i++;
+                } else{
+                    Ioon ioon = new Ioon(ioonStr.substring(0,2), 1.0, -1);
+                    ioonid[i]= ioon;
+                    System.out.println(ioon.toString());
+                    i++;
+                }
+                
+            } else{
+                if(ioonStr.charAt(3)=='+'){
+                    Ioon ioon = new Ioon(ioonStr.substring(0,2),Double.parseDouble(ioonStr.substring(2,3)), Integer.parseInt(ioonStr.substring(2,3)));
+                    ioonid[i]= ioon;
+                    System.out.println(ioon.toString());
+                    i++;
+                } else{
+                    Ioon ioon = new Ioon(ioonStr.substring(0,2),Double.parseDouble(ioonStr.substring(2,3)), Integer.parseInt(ioonStr.substring(2,3))*-1);
+                    
+                    ioonid[i]= ioon;
+                    System.out.println(ioon.toString());
+                    i++;
+                }
+            }
+        }
+        return ioonid;
+    }
 }

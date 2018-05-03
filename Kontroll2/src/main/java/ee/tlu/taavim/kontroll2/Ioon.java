@@ -10,6 +10,11 @@ public class Ioon implements Ioonid{
         this.aatomMassideSumma = aatomMassideSumma;
         this.laeng = laeng;
     }
+
+    @Override
+    public String toString() {
+        return "Ioon{" + "nimetus=" + nimetus + ", aatomMassideSumma=" + aatomMassideSumma + ", laeng=" + laeng + '}';
+    }
     
     
     
