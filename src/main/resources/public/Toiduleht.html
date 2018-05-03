@@ -25,7 +25,7 @@
             }
             
             function otsiRasv() {
-                let p2ring = "nimetus=" + document.getElementById("kast7").value + "&b=" + document.getElementById("kast8").value;
+                let p2ring = "a=" + document.getElementById("kast7").value + "&b=" + document.getElementById("kast8").value;
                 xhr.open("GET", "otsiRasvajargi?" + p2ring, true);
                 xhr.send(true);
             }

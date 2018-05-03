@@ -46,7 +46,7 @@ public class Toidud {
     }
     
     @RequestMapping("/otsiRasvajargi")
-    public String otsiRasv(double a, double b)  throws Exception{
+    public String otsiRasv(double a, double b) throws Exception{
 	Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/if17_kodakevi?user=if17&password=if17");
 	PreparedStatement st = cn.prepareStatement("SELECT * FROM toiduaine WHERE rasv BETWEEN ? AND ?");
 	st.setDouble(1, a);
