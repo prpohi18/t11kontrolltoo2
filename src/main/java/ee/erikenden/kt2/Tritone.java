@@ -5,6 +5,7 @@ import static java.lang.Math.abs;
 public class Tritone {
     public int base;
     public int majorThird, perfectFifth;
+    public int letOrNum;
     public String baseLet, mtLet, perfLet;
     public String[] noteLetters = {"C", "C#", "D", "Eb", "E", "F", "F#", "G", "G#", "A", "B", "H"};
     public String[] noteLettersRev = {"C", "H", "B", "A", "G#", "G", "F#", "F", "E", "Eb", "D", "C#"};
@@ -31,8 +32,8 @@ public class Tritone {
         int counter = 0;
         int complete = 0;
         if(differenceFromC > 0){
-            while(counter < noteLetters.length && complete == 0){
-                if(counter == 11 && differenceFromC > 0){
+            while(complete == 0){
+                if(counter == 12 && differenceFromC > 0){
                     counter = 0;
                 } else if(differenceFromC > 0){
                     differenceFromC -= 1;
@@ -48,8 +49,8 @@ public class Tritone {
             }
         } else if (differenceFromC < 0){
             differenceFromC = abs(differenceFromC);
-            while(counter < noteLettersRev.length && complete == 0){
-                if(counter == 11 && differenceFromC > 0){
+            while(complete == 0){
+                if(counter == 12 && differenceFromC > 0){
                     counter = 0;
                 } else if(differenceFromC > 0){
                     differenceFromC -= 1;

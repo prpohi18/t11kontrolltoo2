@@ -33,5 +33,6 @@ public class AppTest
         Tritone tri = new Tritone(60);
         assertTrue(tri.convertToFreq("C") == 60);
         assertTrue(tri.convertToFreq("C#") == 61);
+        assertTrue(tri.convertToFreq("D") == 62);
     }
 }

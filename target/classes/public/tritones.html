@@ -30,33 +30,26 @@
             output2 = document.getElementById("output2")
             output3 = document.getElementById("output3")
             output4 = document.getElementById("output4")
+            displaymode = document.getElementById("displaymode")
 
             submit.addEventListener("click", getChordNotes)
         }
         function getChordNotes(){
-            xhr1.open("GET", "/tritones.html/" + takt1.value + "Tri", true)
+            xhr1.open("GET", "/tritones.html/" + takt1.value + "Tri" + displaymode.value, false)
             xhr1.send(true)
-            console.log(xhr1.responseText)
-            output[0] = xhr1.responseText
-            xhr2.open("GET", "/tritones.html/" + takt1.value + "Tri", true)
+            xhr2.open("GET", "/tritones.html/" + takt2.value + "Tri" + displaymode.value, false)
             xhr2.send(true)
-            console.log(xhr2.responseText)
-            output[1] = xhr2.responseText
-            xhr3.open("GET", "/tritones.html/" + takt1.value + "Tri", true)
+            xhr3.open("GET", "/tritones.html/" + takt3.value + "Tri" + displaymode.value, false)
             xhr3.send(true)
-            console.log(xhr3.responseText)
-            output[2] = xhr3.responseText
-            xhr4.open("GET", "/tritones.html/" + takt1.value + "Tri", true)
+            xhr4.open("GET", "/tritones.html/" + takt4.value + "Tri" + displaymode.value, false)
             xhr4.send(true)
-            console.log(xhr4.responseText)
-            output[3] = xhr4.responseText
         }
         function displayNotes(){
             if(xhr4.readyState == 4){
-                output1.innerHTML = output[0]
-                output2.innerHTML = output[1]
-                output3.innerHTML = output[2]
-                output4.innerHTML = output[3]
+                output1.innerHTML = xhr1.responseText
+                output2.innerHTML = xhr2.responseText
+                output3.innerHTML = xhr3.responseText
+                output4.innerHTML = xhr4.responseText
             }
         }
     </script>
@@ -82,6 +75,10 @@
         <option value="C">C</option>
         <option value="F">F</option>
         <option value="G">G</option>
+    </select>
+    <select id="displaymode">
+        <option value="0">Numbrid</option>
+        <option value="1">Tähed</option>
     </select>
     <input type="submit" id="submit">
     <span id="output1"></span>
