@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Akordide arvutaja</title>
+    <script>
+        let takt1
+        let takt2
+        let takt3
+        let takt4
+        let submit
+        let output = []
+        let output1
+        let output2
+        let output3
+        let output4
+        let xhr1 = new XMLHttpRequest()
+        let xhr2 = new XMLHttpRequest()
+        let xhr3 = new XMLHttpRequest()
+        let xhr4 = new XMLHttpRequest()
+        xhr4.onreadystatechange = displayNotes
+
+        window.onload = function(){
+            takt1 = document.getElementById("takt1")
+            takt2 = document.getElementById("takt2")
+            takt3 = document.getElementById("takt3")
+            takt4 = document.getElementById("takt4")
+            submit = document.getElementById("submit")
+            output1 = document.getElementById("output1")
+            output2 = document.getElementById("output2")
+            output3 = document.getElementById("output3")
+            output4 = document.getElementById("output4")
+            displaymode = document.getElementById("displaymode")
+
+            submit.addEventListener("click", getChordNotes)
+        }
+        function getChordNotes(){
+            xhr1.open("GET", "/tritones.html/" + takt1.value + "Tri" + displaymode.value, false)
+            xhr1.send(true)
+            xhr2.open("GET", "/tritones.html/" + takt2.value + "Tri" + displaymode.value, false)
+            xhr2.send(true)
+            xhr3.open("GET", "/tritones.html/" + takt3.value + "Tri" + displaymode.value, false)
+            xhr3.send(true)
+            xhr4.open("GET", "/tritones.html/" + takt4.value + "Tri" + displaymode.value, false)
+            xhr4.send(true)
+        }
+        function displayNotes(){
+            if(xhr4.readyState == 4){
+                output1.innerHTML = xhr1.responseText
+                output2.innerHTML = xhr2.responseText
+                output3.innerHTML = xhr3.responseText
+                output4.innerHTML = xhr4.responseText
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>Akordid</h1>
+    <select id="takt1">
+        <option value="C">C</option>
+        <option value="F">F</option>
+        <option value="G">G</option>
+    </select>
+    <select id="takt2">
+        <option value="C">C</option>
+        <option value="F">F</option>
+        <option value="G">G</option>
+    </select>
+    <select id="takt3">
+        <option value="C">C</option>
+        <option value="F">F</option>
+        <option value="G">G</option>
+    </select>
+    <select id="takt4">
+        <option value="C">C</option>
+        <option value="F">F</option>
+        <option value="G">G</option>
+    </select>
+    <select id="displaymode">
+        <option value="0">Numbrid</option>
+        <option value="1">Tähed</option>
+    </select>
+    <input type="submit" id="submit">
+    <span id="output1"></span>
+    <span id="output2"></span>
+    <span id="output3"></span>
+    <span id="output4"></span>
+</body>
+</html>
