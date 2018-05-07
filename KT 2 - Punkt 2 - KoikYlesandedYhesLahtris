@@ -1,0 +1,107 @@
+YlesannePunkt2.txt
+Koosta andmebaasiliidesega veebileht, kus saab toiduaineid objektide kaudu lisada ja kustutada, nime järgi andmeid vaadata
+ning rasvaprotsendivahemiku järgi otsida. Koosta lisamise, arvutamise, otsimise ja kustutamise kontrollimiseks automaattest.
+___________________________________________________________________________________________________________________________
+Andmed asuvad:
+kt-2 > KtKt3 > src | target | pom.xml 
+                > main | test
+                   > java > baas > ToiduaineteOtsimine.java      
+___________________________________________________________________________________________________________________________
+ToiduaineteOtsimine.java
+package baas;
+import java.sql.*;
+import java.io.*;
+
+public class ToiduaineteOtsimine{
+	public static void main(String[] arg)throws Exception{
+		BufferedReader sisse=new BufferedReader(new InputStreamReader(System.in)); /*Selle vahendusel kasutajaga suhtlemine*/
+		Connection cn=DriverManager.getConnection("jdbc:mysql://localhost/if17_ksoodla?user=if17&password=if17");
+		
+		String tabeliLoomine = "CREATE TABLE IF NOT EXISTS toiduained(nimetus VARCHAR(30), rasvaprotsent INT);";
+		PreparedStatement st1=cn.prepareStatement(tabeliLoomine);
+		st1.executeUpdate();
+		
+		System.out.println("Sisesta mida soovid teha (lisamine/kustutamine/otsimine/n2itamine):");
+		String toiming = sisse.readLine();
+		
+		/*Lisama*/
+		if(toiming.equals("lisamine")){		
+			PreparedStatement st2=cn.prepareStatement("INSERT INTO toiduained VALUES (?, ?)");
+			
+			System.out.println("Sisesta toiduaine nimetus:");
+			String nimetus = sisse.readLine();
+			
+			System.out.println("Sisesta toiduaine rasvaprotsent:");
+			String rasvaprotsent = sisse.readLine();
+			
+			
+			st2.setString(1, nimetus);
+			st2.setInt(2, Integer.parseInt(rasvaprotsent));
+		
+			st2.executeUpdate();
+		/*Kustutus*/
+		}else if(toiming.equals("kustutamine")){	
+			System.out.println("Kustuta nimetuse järgi?");
+			String muutuja = sisse.readLine();
+
+			
+			if(muutuja.equals("nimetus")){
+				String kustutamiseK2sk = "DELETE FROM toiduained WHERE "+muutuja+"";
+				PreparedStatement st3=cn.prepareStatement(kustutamiseK2sk);
+				st3.executeUpdate();
+			}
+		}else if(toiming.equals("otsimine")){
+			System.out.println("Millist nimetust otsida?");
+			String otsitavLahter = sisse.readLine();
+			
+			System.out.println("Millise protsendi järgi otsida?");
+			String otsitavV22rtus = sisse.readLine();
+			if ((otsitavLahter.equals("nimetus"))){
+				String muutmiseK2sk = "UPDATE toiduained SET"+otsitavLahter+"="+otsitavV22rtus;
+				PreparedStatement st4=cn.prepareStatement(muutmiseK2sk);
+				st4.executeUpdate();
+			}
+		}else if(toiming.equals("n2itamine")){
+			ResultSet rs=st1.executeQuery("SELECT nimetus, rasvaprotsent FROM toiduained WHERE rasvaprotsent >50 AND rasvaprotsent < 100;");
+
+			while(rs.next()){
+				System.out.println(rs.getString("nimetus")+" "+rs.getInt("rasvaprotsent"));
+		
+			}
+		}
+	}
+}
+___________________________________________________________________________________________________________________________
+pom.xml
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<modelVersion>4.0.0</modelVersion>
+<groupId>jaagup</groupId>
+<artifactId>boot3</artifactId>
+<packaging>jar</packaging>
+<version>1.0-SNAPSHOT</version>
+<parent>
+<groupId>org.springframework.boot</groupId>
+<artifactId>spring-boot-starter-parent</artifactId>
+<version>1.5.2.RELEASE</version>
+</parent>
+<dependencies>
+<dependency>
+<groupId>org.springframework.boot</groupId>
+<artifactId>spring-boot-starter-web</artifactId>
+</dependency>
+<dependency>
+<groupId>mysql</groupId>
+<artifactId>mysql-connector-java</artifactId>
+<version>5.1.6</version>
+</dependency>
+</dependencies>
+<build>
+<plugins>
+<plugin>
+<groupId>org.springframework.boot</groupId>
+<artifactId>spring-boot-maven-plugin</artifactId>
+</plugin>
+</plugins>
+</build>
+</project>
+
