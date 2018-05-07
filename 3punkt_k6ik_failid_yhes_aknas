@@ -1,0 +1,144 @@
+YlesandePunkt3.txt
+Koosta klass toidu jaoks (nimetus, toidukomponendid). Toidule käsklused küsimaks sisalduvate valkude, rasvade ja süsivesikute kogust.
+Loo retsepti järgi toit (nt. kartulisalat), küsi salatis leiduvalte toitainete kogused. Koosta veebirakendus, kus näidatakse valitud
+toidu etteantud koguse (nt 5kg kartulisalati) jaoks vajalikud toiduained. Kontrolli automaattestiga arvutuste õigsust.
+
+Lehekülg:
+http://www.tlu.ee/~k2di/programmeerimise_pohikursus/html/ValmistameToitu.html
+________________________________________________________________________________________________________________________________
+Failid kaustas:
+kt-2 > KtKt1 >
+________________________________________________________________________________________________________________________________
+Toit.java
+package KtKt1;
+import java.io.*;
+import java.util.*;
+import java.util.Arrays;
+/*Loon faili muutujate jaoks*/
+
+public class Toit{
+	public String nimetus; 
+	public double valk; /*protsentides*/
+	public double rasv; /*protsentides*/
+	public double sysivesik; /*protsentides*/
+	/*100g kohta*/
+	public double sadagrammi;
+	/*1kg salatit*/
+	public double salat;
+	
+	public Toit(String nimetus, double valk, double rasv, double sysivesik, double sadagrammi, double salat){
+		this.nimetus=nimetus;
+		this.valk=valk;
+		this.rasv=rasv;
+		this.sysivesik=sysivesik;
+		/*100g kohta*/
+		this.sadagrammi=sadagrammi;
+		/*1 kg salatit*/
+		this.salat=salat;
+	}
+	
+	/*public double erinevKogus(){
+		double ykskilo = sadagrammi*10;
+		return ykskilo;
+	}
+	
+	public double erinevKogus2(){
+		double viiskilo = sadagrammi*50;
+		return viiskilo;
+	}*/
+	
+	
+	
+	/*Trüki kontroll*/
+	@Override
+	public String toString(){
+		return nimetus+", valkude kogus: "+valk+" %, rasvade kogus: "+rasv+" % ja süsivesikute kogus: "+sysivesik+" % 100grammi kohta."+" 1kg salati jaoks läheb tarvis "+salat+" kg "+nimetus;
+	}
+}
+
+/*
+Kartulisalati (1kg) retsept:
+Kartul - 0.350
+Hapukoor - 0.100
+Vorst - 0.200
+Muna - 0.200
+Kurk - 0.150
+*/
+________________________________________________________________________________________________________________________________
+Komponendid.java
+package KtKt1;
+
+public class Komponendid{
+	public static void main(String[] arg){
+		Toit t1=new Toit("Kartul",30.0,30.0,40.0,100.0,0.350);
+		Toit t2=new Toit("Hapukoor",20.0,20.0,60,100.0,0.100);
+		Toit t3=new Toit("Vorst",60.0,10.0,30.0,100.0,0.200);
+		Toit t4=new Toit("Muna",80.0,5.2,14.8,100.0,0.200);
+		Toit t5=new Toit("Kurk",23.5,38.25,38.25,100.0,0.150);
+		Valmistoit v=new Valmistoit();
+		v.lisa(t1);
+		v.lisa(t2);
+		v.lisa(t3);
+		v.lisa(t4);
+		v.lisa(t5);
+		System.out.println(t1);
+		System.out.println(t2);
+		System.out.println(t3);
+		System.out.println(t4);
+		System.out.println(t5);
+
+	}
+}
+
+/*
+Kartulisalati (1kg) retsept:
+Kartul - 0.350
+Hapukoor - 0.100
+Vorst - 0.200
+Muna - 0.200
+Kurk - 0.150
+*/
+________________________________________________________________________________________________________________________________
+Valmistoit.java //POOLIK
+package KtKt1;
+import java.io.*;
+import java.util.*;
+import java.util.Arrays;
+/*Loon faili muutujate jaoks*/
+
+public class Valmistoit{
+	List<Toit> toidud=new ArrayList<Toit>();
+	public void lisa(Toit t){
+		toidud.add(t);
+	}
+	public double rasvadKokku(){
+		double koikRasvad = ();
+		return koikRasvad;
+	}
+	
+	@Override
+	public String toString(){
+		return rasvadKokku();
+	}
+}
+________________________________________________________________________________________________________________________________
+HTML-i automaattest selenide1
+Proov2.java
+package ee.tlu.elinorr.selenide1;
+
+
+import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.Condition.*;
+import org.openqa.selenium.By;
+
+public class Proov2 {
+	public static void main (String[] args){
+		open("http://www.tlu.ee/~k2di/programmeerimise_pohikursus/html/ValmistameToitu.html");
+		$("#kast1").setValue("2");
+		$("#nupp1").click();
+		System.out.println($("#vastus").getText());
+                
+		
+		
+	}
+}
