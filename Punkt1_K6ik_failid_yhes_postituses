@@ -1,0 +1,128 @@
+Ylesanne.txt
+Koosta klass toiduaine tarbeks (nimetus, valkude, rasvade ja süsivesikute protsent). Protsent kokku ei saa ületada 100 - muidu
+antakse veateade. Loo mõni toiduaine (nt. kartul, hapukoor, vorst). Koosta klass toidkomponendi tarbeks (kogus, viit toiduainele).
+Loo mõned toidukomponendid (nt. 100g kartuleid, 30g hapukoort, 50g vorsti). Lisa toidukomponendile käsklus selle sees leiduva
+rasvakoguse arvutamiseks.
+
+_______________________________________________________________________________________________________________________________
+Andmed ausvad kõik:
+kt-2 > KtKt2 > 
+_______________________________________________________________________________________________________________________________
+Toiduaine.java
+package KtKt2;
+import java.io.*;
+import java.util.*;
+import java.util.Arrays;
+/*Loon klassi toiduainete jaoks*/
+public class Toiduaine{
+	/*Loon muutujad*/
+	public String nimetus; 
+	public double valk; /*protsentides*/
+	public double rasv; /*protsentides*/
+	public double sysivesik; /*protsentides*/
+	/*Loon rasvaprotsendi arvutamiseks aine koguse kohta muujuta*/
+	public double antudKogus;
+	
+	public Toiduaine(String nimetus, double valk, double rasv, double sysivesik){
+		this.nimetus=nimetus;
+		this.valk=valk;
+		this.rasv=rasv;
+		this.sysivesik=sysivesik;
+
+		
+		/*Loon funktsiooni, mis annab märku, et infot on liiga palju*/
+		if(valk+rasv+sysivesik>100){
+			throw new RuntimeException("Protsentuaalselt on üles 100% ehk liiga palju.");
+		}
+		if(valk+rasv+sysivesik<100){
+			throw new RuntimeException("Protsentuaalselt on alla 100% ehk liiga vähe.");
+		}
+		
+	}
+	
+	
+	
+	@Override
+	public String toString(){
+		return nimetus+", valkude kogus: "+valk+" %, rasvade kogus: "+rasv+" % ja süsivesikute kogus: "+sysivesik+" %.";
+	}
+	
+	
+}
+
+/*
+Väljatrükk
+Kartul, valkude kogus: 30.0 %, rasvade kogus: 30.0 % ja süsivesikute kogus: 40.0 %.
+Hapukoor, valkude kogus: 20.0 %, rasvade kogus: 20.0 % ja süsivesikute kogus: 60.0 %.
+Vorst, valkude kogus: 60.0 %, rasvade kogus: 10.0 % ja süsivesikute kogus: 30.0 %.
+*/
+_______________________________________________________________________________________________________________________________
+AndmedSisse1.java
+package KtKt2;
+
+public class AndmedSisse1{
+	public static void main(String[] arg){
+		Toiduaine t1=new Toiduaine("Kartul",30.0,30.0,40.0);
+		Toiduaine t2=new Toiduaine("Hapukoor",20.0,20.0,60);
+		Toiduaine t3=new Toiduaine("Vorst",60.0,10.0,30.0);
+		ToidukomponentRasv r1=new ToidukomponentRasv("Kartul",30.0,100.0);
+		ToidukomponentRasv r2=new ToidukomponentRasv("Hapukoor",20.0,30.0);
+		ToidukomponentRasv r3=new ToidukomponentRasv("Vorst",10.0,50.0);
+		System.out.println(t1);
+		System.out.println(t2);
+		System.out.println(t3);
+		System.out.println(r1);
+		System.out.println(r2);
+		System.out.println(r3);
+	}
+}
+
+/*
+Pakett kõrgemale - käsk: javac KtKt2/*java 
+ja samas paketis java KtKt2.AndmedSisse1
+
+Esimese ülesande punkti jaoks väljatrükk:
+Kartul, valkude kogus: 30.0 %, rasvade kogus: 30.0 % ja süsivesikute kogus: 40.0 %.
+Hapukoor, valkude kogus: 20.0 %, rasvade kogus: 20.0 % ja süsivesikute kogus: 60.0 %.
+Vorst, valkude kogus: 60.0 %, rasvade kogus: 10.0 % ja süsivesikute kogus: 30.0 %.
+Kartul: 100.0 grammis on rasva 30.0 protsenti.
+Hapukoor: 30.0 grammis on rasva 6.0 protsenti.
+Vorst: 50.0 grammis on rasva 5.0 protsenti.
+*/
+_______________________________________________________________________________________________________________________________
+ToidukomponentRasv.java
+package KtKt2;
+import java.io.*;
+import java.util.*;
+import java.util.Arrays;
+/*Loon faili, mis arvutab etteantud koguse kohta rasvaprotsendi aines*/
+public class ToidukomponentRasv{
+	/*Loon muutujad*/
+	public String nimetus2; 
+	public double rasv2; /*protsentides*/
+	/*Loon rasvaprotsendi arvutamiseks aine koguse kohta muujuta*/
+	public double antudKogus;/*grammides*/
+	
+	public ToidukomponentRasv(String nimetus2, double rasv2, double antudKogus){
+		this.nimetus2=nimetus2;
+		this.rasv2=rasv2;
+		this.antudKogus=antudKogus;
+		
+	}
+	public double protsentKogusArvut(){
+		double protsentKogus = antudKogus*(rasv2/100);
+		return protsentKogus;
+	}
+	
+	@Override
+	public String toString(){
+		return nimetus2+": "+antudKogus+" grammis on rasva "+protsentKogusArvut()+" protsenti.";
+	}
+}
+
+/*
+Väljatrükk
+Kartul: 100.0 grammis on rasva 30.0 protsenti.
+Hapukoor: 30.0 grammis on rasva 6.0 protsenti.
+Vorst: 50.0 grammis on rasva 5.0 protsenti.
+*/
