@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Geenid</title>
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+    <div class="add">
+        <h2>Lisa geen</h2>
+
+        <label for="name">Sisestage palun geeni nimi</label>
+        <input type="text" id="name">
+        <label for="mom-allele-1">Ema alleel 1</label>
+        <input type="text" id="mom-allele-1">
+        <label for="mom-allele-2">Ema alleel 2</label>
+        <input type="text" id="mom-allele-2">
+        <label for="dad-allele-1">Isa alleel 1</label>
+        <input type="text" id="dad-allele-1">
+        <label for="dad-allele-2">Isa alleel 2</label>
+        <input type="text" id="dad-allele-2">
+        <button id="add-button">Lisa uus geen</button>
+    </div>
+
+    <div class="search">
+        <h2>Otsi geeni</h2>
+
+        <input type="text" id="search">
+        <button id="search-button">Otsi geeni</button>
+    </div>
+
+    <div class="search-results">
+        <table border="1" style="width:300px">
+            <thead>
+            <tr>
+                <th>Geeni id</th>
+                <th>Geen</th>
+                <th>Alleel1</th>
+                <th>Alleel2</th>
+                <th>Vali</th>
+            </tr>
+            </thead>
+
+            <tbody id="search-result"></tbody>
+        </table>
+        <button id="generate-button">Loo valiku põhjal uus geen</button>
+    </div>
+
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/application.js"></script>
+
+</body>
+</html>
