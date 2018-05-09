@@ -13,7 +13,7 @@ public class Pendel {
            System.out.print("Võnkeperiood on: "+ vonkeperiood +"\n");
        }
 		
-	Hambad h=new Hambad(0, 25);
+	Hambad h=new Hambad(0, 10);
 		
 	while (true) {
     	Thread.sleep((long)(vonkeperiood * 1000) / 2);
@@ -21,7 +21,7 @@ public class Pendel {
 		Thread.sleep((long)(vonkeperiood * 1000) / 2);
 		System.out.println("Toimus täisvõnge");
 		h.suurendahammastearv();
-		if (h.loetudhambad == 25){
+		if (h.loetudhambad == 101){
 			System.out.println("Toimus hammasrattal täisring");
 		}
 	}
