@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+	<meta charset="utf-8">
+    <title>funktsioon</title>
+	<style>
+		.btn {
+		background-color: white;
+		color: black;
+		border: 2px solid #555555;
+		width: 150px;
+		font-family: Cousine;
+		font-size: 20px;
+		border-radius: 2px;
+		}
+		
+		body {
+		position:fixed;
+		top: 40%;
+		left: 50%;
+		text-align: center;
+		transform: translate(-50%, -50%);
+		font-family: 'Cousine';font-size: 36px;
+		}
+	</style>
+    <script>
+      let xhr=new XMLHttpRequest();
+      xhr.onreadystatechange=kuvaVastus;
+      function saadaAndmed() {
+        let parameetrid=document.getElementById("kast1").value+"/"+document.getElementById("kast2").value+"/"+document.getElementById("kast3").value+"/"+document.getElementById("kast4").value;
+        xhr.open("GET", "/arvuta/"+parameetrid, true);
+        xhr.send(parameetrid);
+		console.log(parameetrid);
+      }
+      function kuvaVastus() {
+        document.getElementById("vastus").value=vastus;
+        if(xhr.readyState==4) {
+          document.getElementById("vastus").innerHTML=xhr.responseText;
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <h3>Joone leidmise funktsioon</h3>
+    <input type="number" id="kast1" class="btn" placeholder="kordaja">
+    <input type="number" id="kast2" class="btn" placeholder="vabaliige">
+    <input type="number" id="kast3" class="btn" placeholder="vähim x väärtus"> 
+    <input type="number" id="kast4" class="btn" placeholder="suurim x väärtus"> 
+    <input type="button" id="nupp" class="btn" value="="  onClick="saadaAndmed()">
+    <p>Vastus: y = <div id="vastus"></div></p>
+  </body>
+</html>
