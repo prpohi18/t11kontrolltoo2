@@ -1,0 +1,7 @@
+CREATE TABLE geenid(
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    nimetus VARCHAR(50),
+    alleel1 VARCHAR(50),
+    alleel2 VARCHAR(50)
+);
+

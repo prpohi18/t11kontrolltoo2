@@ -1,0 +1,97 @@
+<!DOCTYPE HTML>
+
+<html lang="et"></html>
+	<head>
+	<meta charset="utf-8">
+	<title>Geenid</title>
+	<script>
+		let xhr=new XMLHttpRequest();
+		xhr.onreadystatechange=andmedSaabusid;
+		function andmedSaabusid(){
+			if(xhr.readyState==4){
+			console.log(xhr.responseText);
+				if(xhr.responseText.endsWith("salvestatud") || xhr.responseText.endsWith("kustutatud") || xhr.responseText.endsWith("puudub")){
+					document.getElementById("teated").innerHTML=xhr.responseText;
+					kysiGeenid();
+				} else {
+					kuvaGeenid();
+				}
+			}
+		}
+		
+		function kuvaGeenid(){
+			let obj=JSON.parse(xhr.responseText);
+			let s="<ul>";
+			for(let i=0; i<obj.length; i++){
+				s+="<li>"+"Id: "+obj[i].id+ ". "+obj[i].nimetus+"- alleel1: "+obj[i].alleel1+", alleel2: "+obj[i].alleel2+"</li>";
+			}
+			s+="</ul>";
+			document.getElementById("geenid").innerHTML=s;
+		}
+		
+		function kysiGeenid(){
+			xhr.open("GET", "/loetelu", true);
+			xhr.send(null);
+		}
+		
+		function lisamine(){
+            let uusGeenNimi="/lisauusGeen?nimetus="+document.getElementById("kast1").value+"&alleel1Ema="+document.getElementById("kast2").value+"&alleel2Ema="+document.getElementById("kast3").value+"&alleel1Isa="+document.getElementById("kast4").value+"&alleel2Isa="+document.getElementById("kast5").value;
+			xhr.open("GET", uusGeenNimi, true);
+			xhr.send(null);
+			document.getElementById("lapseGeen").innerHTML = xhr.responseText;
+		}
+		
+		function otsiGeeni(){
+		    let geeniOtsing="/otsiGeeni?nimetus="+nimetus.value;
+		    xhr.open("GET", geeniOtsing, false);
+		    xhr.send(null);
+		    document.getElementById("geeniotsing").innerHTML = xhr.responseText;
+		}
+		
+		function valiGeen(){
+		    let geen = [];
+		    let geeniNimetus = document.getElementById("valiNimetus").innerHTML;
+		    let kogus = document.getElementById("leitud").innerHTML;
+		    for(let i=0; i<kogus; i++){
+		        if(document.getElementById("valitud"+i).checked){
+		            geen.push(document.getElementById("valiAlleel1"+i).innerHTML);
+		            geen.push(document.getElementById("valiAlleel2"+i).innerHTML);
+		        }
+		    }
+		    let uusLisatudGeen="/lisauusGeen?nimetus="+geeniNimetus+"&alleel1Ema="+geen[0]+"&alleel2Ema="+geen[1]+"&alleel1Isa="+geen[2]+"&alleel2Isa="+geen[3];
+			xhr.open("GET", uusLisatudGeen, true);
+			xhr.send(null);
+			document.getElementById("uusLapseGeen").innerHTML = xhr.responseText;
+		}
+	</script>
+	</head>
+	<h1>Geenid</h1>
+	Alleeli nimetus: <input type="text" id ="kast1" /><br><br>
+	<p><b>Lisa ema alleelid</b></p>
+	Ema alleel1: <input type="text" id ="kast2" /><br><br>
+	Ema alleel2: <input type="text" id ="kast3" /><br><br>
+	<p><b>Lisa isa alleelid</b></p>
+	Isa alleel1: <input type="text" id ="kast4" /><br><br>
+	Isa alleel2: <input type="text" id ="kast5" /><br><br>
+	
+	
+	<input type="button" value="Lisa geen" onclick="lisamine()" />
+	<br>
+
+	<body onload="kysiGeenid()">
+	<br>
+	<div id="geeniotsing">
+	    <input type="text" id="nimetus"><br>
+	    <input type="button" value="Otsi geeni nime järgi" onclick="otsiGeeni()">
+	</div>
+	<br><br>
+	<input type="button" value="Vali geenid" onclick="valiGeen()">
+	<br>
+	<div id="lapseGeen"></div>
+	<div id="uusLapseGeen"></div>
+	<div id="teated"></div>	
+	<p><b>Andmebaasis olevad geenid:</b></p>
+	<div id="geenid"></div>
+
+	</body>
+</html>

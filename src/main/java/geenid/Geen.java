@@ -1,8 +1,6 @@
 package geenid;
-import javax.persistence.*;
+import java.util.*;
 
-@Entity
-@Table(name="geenid")
 public class Geen{
 
 	public Alleel alleel1;
@@ -20,44 +18,13 @@ public class Geen{
 		return true;
 	}
 	
-	public Alleel juhuslikAlleel(Alleel){
+	public Alleel juhuslikAlleel(){
 	    Random juhuslik = new Random();
 	    boolean  juhAlleel = juhuslik.nextBoolean();
 	    if(juhAlleel){
 	        return alleel1;
-	        //return true;
 	    } else {
 	    return alleel2;
-		//return false;	
 		}
 	}
-
-	public boolean geeniyhendamine(){
-		 alleel1 = juhuslikAlleel();
-		 alleel2 = juhuslikAlleel();
-		 if(!alleel1.positiivne && !alleel2.positiivne){
-		    return false;
-		}
-		return true;
-
-	}
-
-	
-	/*public boolean juhuslikAlleel(){
-		String juhulsik = {alleel1, alleel2};
-		Boolean[] juhuslik = {alleel1, alleel2};
-		return juhuslik [new Random().nextBoolean(juhuslik)];
-	}*/
-
 }
-
-	/*public String alleelityyp(){
-		//this.reesusPos=reesusPos;
-		//this.reesusNeg=reesusNeg;
-		//if(reesus){
-		if (pos){
-			return nimetus + ("on positiivne");
-		}
-		return nimetus + ("on negatiivne");
-	}
-	*/
