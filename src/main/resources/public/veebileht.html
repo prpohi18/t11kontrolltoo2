@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Kontrolltöö 2 - Tähed - Kert Tamm</title>
+        <meta charset="UTF-8">
+        <script>
+            let xhr= new XMLHttpRequest();
+            xhr.onreadystatechange=kuvaVastus;
+            
+            function sisestaArvud(){
+                let lause = document.getElementById("lause").value;
+                let aadress = "/sentence?lause="+lause;
+                xhr.open("GET",aadress,true);
+                xhr.send();
+            }
+            
+            function kuvaVastus(){
+                if(xhr.readyState==4){
+                document.getElementById("vastus").innerHTML=xhr.responseText;
+                }
+            }
+            
+        </script>
+            
+    </head>
+    <body>
+        <div>A tähtede arvu leidmine</div>
+        <p>Sisesta lause, et leida selles lauses olevad a tähed ning a tähed igas sõnas eraldi</p>       
+        
+            Lause <input type="text" id="lause"/><br><br>
+            
+            <input type="button" id="finda" value="Leia a tähed" onclick="sisestaArvud()"/><br><br>
+            <span id="vastus"><span><br>
+
+    </body>
+</html>
