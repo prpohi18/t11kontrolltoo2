@@ -1,0 +1,107 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Geenid</title>
+    <script
+  src="https://code.jquery.com/jquery-3.3.1.js"
+  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+  crossorigin="anonymous"></script>
+    <script>
+		var xhr=new XMLHttpRequest();
+	
+		function lisamine(){
+			var nimetus = getElementById("nimetus").value;
+			var esimenealleel = getElementById("esimenealleel").value;
+			var teinealleel = getElementById("teinealleel").value;
+			var kolmasalleel = getElementById("kolmasalleel").value;
+			var neljasalleel = getElementById("neljasalleel").value;
+			if (esimenealleel="pos"){
+				esimenealleel=true;
+			}
+			else {
+				esimenealleel=false;
+			}
+			if (teinealleel=="pos"){
+				teinealleel=true;
+			}
+			else {
+				teinealleel=false;
+			}
+			if (kolmasalleel=="pos"){
+				kolmasalleel=true;
+			}
+			else {
+				kolmasalleel=false;
+			}
+			if (neljas=="pos"){
+				neljasalleel=true;
+			}
+			else {
+				neljasalleel=false;
+			}
+			var random1 = randomInt(1, 2);
+			var random2 = randomInt(1, 2);
+			/*
+			if(random1==1){
+				var alleel1=esimenealleel;
+			}
+			else{
+				var alleel1=teinealleel;
+			}
+			if(random2==1){
+				var alleel2=kolmasalleel;
+			}
+			else{
+				var alleel2=neljasalleel;
+			}
+			*/
+            var aadress="/lisa?nimetus="+document.getElementById("nimetus").value+
+            "&emaalleel1="+esimenealleel+
+			"&emaalleel2="+teinealleel+
+			"&isaalleel1="+kolmasalleel+
+			"&isaalleel2="+neljasalleel);
+            xhr.open("GET", aadress, true);
+            xhr.send();
+        }
+		function randomInt(min,max){
+			return Math.floor(Math.random()*(max-min+1)+min);
+		}
+    </script>
+  </head>
+  <style>
+	.row{
+		display: flex;
+	}
+	.forms{
+		display: block;
+		margin-right: 5%;
+	}
+	body{
+		margin-left: 10%;
+	}
+  </style>
+  <body>
+    <h1>Geenid</h1>
+    <h2>Lisa vanemate geenid</h2>
+	<form onsubmit="lisamine()">
+		<input type="text" id="nimetus" name="nimetus" placeholder="Alleelide nimetus" /><br>
+		<div class="row">
+			<div class="forms">
+				<h3>Ema alleelide väärtused</h3>
+				<p>Esimene alleel</p>
+				<input type="text" id="esimenealleel" label="väärtus"><br>
+				<p>Teine alleel</p>
+				<input type="text" id="teinealleel" label="väärtus"><br>
+			</div>
+			<div class="forms">
+				<h3>Isa alleelide väärtused</h3>
+				<p>Esimene alleel</p>
+				<input type="text" id="kolmasalleel" label="väärtus"><br>
+				<p>Teine alleel</p>
+				<input type="text" id="neljasalleel" label="väärtus"><br>
+			</div>
+		</div><br>
+		<input onclick="lisamine()" type="submit" value="Salvesta" name="submit" />
+	</form>
+  </body>
+</html>
