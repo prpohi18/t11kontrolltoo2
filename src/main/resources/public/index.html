@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Joone võrrand</title>
+        <script>
+            let xhr = new XMLHttpRequest()
+            xhr.onreadystatechange = kuvaVastus
+
+            function arvuta() {
+                
+                let kordaja = document.getElementById("kordajaKast").value
+                let x = document.getElementById("xKast").value
+                let vabaliige = document.getElementById("vabaliikmeKast").value
+                
+                if (kordaja != '' && x != '' && vabaliige != '') {
+                    
+                    let p2ring = "kordaja=" + kordaja + "&x=" + x + "&vabaliige=" + vabaliige
+                    xhr.open("GET", "arvutamine?" + p2ring, true);
+                    xhr.send(true);
+                }
+            }
+            
+            function kuvaVastus() {
+                if (xhr.readyState = 4) {
+                    document.getElementById("vastus").innerHTML = xhr.responseText
+                }
+            }
+        </script>
+    </head>
+    <body>
+        <input type="number" placeholder="Kordaja" id="kordajaKast"/>
+        <br>
+        <input type="number" placeholder="X-koordinaat" id="xKast"/>
+        <br>
+        <input type="number" placeholder="Vabaliige" id="vabaliikmeKast"/>
+        <br>
+        <input type="button" value="Arvuta" onclick="arvuta()" id="arvutamine"/>
+        <div id="vastus"></div>
+    </body>
+</html>
