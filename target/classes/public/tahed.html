@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+	<head>
+		<title>Tekstist A </title>
+		<meta content="text/html; charset=UTF-8" />
+		<script>
+		let xhr=new XMLHttpRequest();
+		xhr.onreadystatechange=kuvaVastus;
+		function leiaTaht(){
+			let p2ring="tekst="+document.getElementById("kast").value;
+			console.log(p2ring);
+				xhr.open("GET", "lause?"+p2ring, true);
+				xhr.send(true);
+			}
+		function kuvaVastus(){
+			if(xhr.readyState==4){
+				document.getElementById("vastus").innerHTML=xhr.responseText;
+			}
+		}
+		</script>
+	</head>
+	<body>
+		<label>Sisesta lause: </label><br/>
+		<textarea id="kast" rows="1" cols="50"></textarea><br/><br/>
+		<input id="nupp" type="button" value="Leia A" onclick="leiaTaht()" /><br/><br/>
+		<div id="vastus"></div>
+	</body>
+</html>
