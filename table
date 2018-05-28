@@ -1,0 +1,11 @@
+CREATE TABLE toiduaine (
+	nimetus VARCHAR(255) PRIMARY KEY,
+	valk double,
+	rasv double,
+	süsivesik double
+	);
+	
+INSERT INTO toiduaine VALUES (Kartul, 20, 40, 30);
+INSERT INTO toiduaine VALUES (Õun, 20, 30, 50);
+
+SELECT * FROM toiduaine;
