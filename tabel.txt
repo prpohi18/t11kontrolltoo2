@@ -1,0 +1,8 @@
+CREATE TABLE toiduained (
+    nimetus VARCHAR(30) NOT NULL PRIMARY KEY,
+    valgud INT(10),
+    rasvad INT(10),
+    sysivesikud INT(10)
+);
+
+INSERT INTO toiduained VALUES('kartul', 10, 30, 20);
