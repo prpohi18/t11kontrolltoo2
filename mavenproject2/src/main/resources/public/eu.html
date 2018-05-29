@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Akordide arvutaja</title>
+</head>
+<body>
+    <center>
+
+        <script>
+            let xhr=new XMLHttpRequest();
+            xhr.onreadystatechange=kuvaVastus;  
+            function sisestaArvud(){
+                let n1=document.getElementById("kast1").value;
+                let aadress="/nootideAndmine?noot1="+n1;
+                xhr.open("GET", aadress, true);
+                xhr.send();
+            }
+            function kuvaVastus(){
+                if(xhr.readyState==4){
+                    document.getElementById("vastus").innerHTML=xhr.responseText;
+                }
+            }
+        </script>
+
+        <h1>Sisesta akord (C, F, G jne) ning saad vastu õige noodi</h1>
+        <input type="text" id="kast1" />
+        <input type="button" value="=" onclick="sisestaArvud()" />
+        <br>
+        <h2>Õige noot on: </h2>
+        <span id="vastus">? </span> 
+        <br>
+    </center>
+</body>
+</html>
