@@ -1,0 +1,36 @@
+javac teinekt/*.java
+java teinekt/Proov
+
+
+
+ let takt1
+        let takt2
+        let takt3
+        let takt4
+        let submit
+        let output = []
+        let output1
+        let output2
+        let output3
+        let output4
+/*      let xhr1 = new XMLHttpRequest()
+        let xhr2 = new XMLHttpRequest()
+        let xhr3 = new XMLHttpRequest()
+        let xhr4 = new XMLHttpRequest() */
+        xhr4.onreadystatechange = displayNotes
+        window.onload = function(){
+            takt1 = document.getElementById("takt1")
+            takt2 = document.getElementById("takt2")
+            takt3 = document.getElementById("takt3")
+            takt4 = document.getElementById("takt4")
+            submit = document.getElementById("submit")
+            /* output1 = document.getElementById("output1")
+            output2 = document.getElementById("output2")
+            output3 = document.getElementById("output3")
+            output4 = document.getElementById("output4") */
+            //displaymode = document.getElementById("displaymode")
+            submit.addEventListener("click", displayNotes)
+        }
+        function displayNotes(){
+            takt1.innerHTML
+        }
