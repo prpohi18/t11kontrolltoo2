@@ -1,0 +1,90 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script>
+        let xhr=new XMLHttpRequest();
+        xhr.onreadystatechange=kuvaVastus;
+        let xhr2=new XMLHttpRequest();
+        xhr2.onreadystatechange=kuvaKustutus;
+        let xhr3=new XMLHttpRequest();
+        xhr3.onreadystatechange=kuvaVaatamine;
+        let xhr4=new XMLHttpRequest();
+        xhr4.onreadystatechange=kuvaOtsimine;
+        function input(){
+            let p2ring="nimetus=" + document.getElementById("nimetus").value + "&valgud=" + document.getElementById("valgud").value
+                + "&rasvad=" + document.getElementById("rasvad").value + "&susivesikud=" +document.getElementById("susivesikud").value;
+            return p2ring;
+        }
+        function lisamine(){
+            xhr.open("GET", "/lisaAndmebaasi?" + input(), true);
+            xhr.send(true);
+        }
+        function kuvaVastus(){
+            if(xhr.readyState==4){
+                document.getElementById("andmed").innerHTML=xhr.responseText;
+            }
+        }
+        function kustutamine(){
+            xhr2.open("GET", "kustutaAndmebaasist?" + "nimetus=" + document.getElementById("nimetus2").value, true);
+            xhr2.send(true);
+        }
+        function kuvaKustutus(){
+            if(xhr2.readyState==4){
+                document.getElementById("andmed").innerHTML=xhr2.responseText;
+            }
+        }
+        function vaatamine(){
+            xhr3.open("GET", "vaataAndmebaasist?" + "nimetus=" + document.getElementById("nimetus3").value, true);
+            xhr3.send(true);
+        }
+        function kuvaVaatamine(){
+            if(xhr3.readyState==4){
+                document.getElementById("andmed").innerHTML=xhr3.responseText;
+            }
+        }
+        function otsimine(){
+            xhr4.open("GET", "otsiAndmebaasist?" + "alates=" + document.getElementById("alates").value +
+                "&kuni=" + document.getElementById("kuni").value, true);
+            xhr4.send(true);
+        }
+        function kuvaOtsimine(){
+            if(xhr4.readyState==4){
+                document.getElementById("andmed").innerHTML=xhr4.responseText;
+            }
+        }
+    </script>
+</head>
+<body>
+<div align="center">
+    <h2>Lisa toiduained andmebaasi: <br><br></h2>
+    Nimetus: <input type="text" id="nimetus"/>
+    <br><br>
+    Valgud: <input type="text" id="valgud"/>
+    <br><br>
+    Rasvade protsent: <input type="text" id="rasvad"/>
+    <br><br>
+    Süsivesikute protsent: <input type="text" id="susivesikud"/>
+    <br><br>
+    <button id="addBtn" onclick="lisamine()">Lisa</button>
+    <hr>
+    <br><br>
+    Nimetus: <input type="text" id="nimetus2"/>
+    <br><br>
+    <button id="delBtn" onclick="kustutamine()">Kustuta</button>
+    <br><br>
+    Nimetus: <input type="text" id="nimetus3"/>
+    <br><br>
+    <button id="viewBtn" onclick="vaatamine()">Vaata</button>
+    <hr>
+    <br><br>
+    Rasvaprotsendi järgi otsimine <br>
+    Alates: <input type="text" id="alates"/> Kuni: <input type="text" id="kuni"/>
+    <br><br>
+    <button id="searchBtn" onclick="otsimine()">Otsi</button>
+    <br><br>
+    <h1>Andmed: <br>
+        <div id="andmed">---</div></h1>
+</div>
+</body>
+</html>
