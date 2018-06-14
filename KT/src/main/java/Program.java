@@ -6,7 +6,6 @@ public class Program{
 		String fileLocation = "../../../";
 		String CleanRiverFile = "cleanRivers.txt";
 		String DirtyRiverFile = "dirtyRivers.txt";
-		//ObjectInputStream objectIn = new ObjectInputStream(fileIn);
 		ArrayList<River> Rivers = new ArrayList<River>();
 		ArrayList<River> dirtyRivers = new ArrayList<River>();
 		BufferedReader reader = new BufferedReader(new FileReader(CleanRiverFile));
@@ -36,13 +35,13 @@ public class Program{
 						r.addTarget(r2, r.targetLocation);
 						System.out.println(r.targetX());
 						System.out.println(r.targetY());
-						System.out.println(r.endX);
-						System.out.println(r.endY);
+						System.out.println(r.riverstopX);
+						System.out.println(r.riverstopY);
 						System.out.println(r.targetLocation);
 					}
 				}
 			}
-			//System.out.println(Rivers.get(index).target.name);
+			
 		}
 
 			for(River r : dirtyRivers) {
@@ -55,26 +54,22 @@ public class Program{
 						r2.addTargetPoint(r.targetX(), r.targetY());
 						System.out.println(r.targetX());
 						System.out.println(r.targetY());
-						System.out.println(r.endX);
-						System.out.println(r.endY);
+						System.out.println(r.riverstopX);
+						System.out.println(r.riverstopY);
 						System.out.println(r.targetLocation);
 					}
 				}
 			}
-			//System.out.println(Rivers.get(index).target.name);
+			
 		}
-		River r1 = new River("Ülo", 50, 85, 120, 65, null, 0.5, "");
+		River r1 = new River("Emajõgi", 50, 85, 120, 65, null, 0.5, "");
 		Rivers.add(r1);
-		River r2 = new River("Obene", 60, 76, 130, 93, r1, 0.5, "Ülo");
+		River r2 = new River("Pärnujõgi", 60, 76, 130, 93, r1, 0.5, "Emajõgi");
 		Rivers.add(r2);
 		r1.addTargetPoint(r2.targetX(), r2.targetY());
-		River r3 = new River("lamp", 160, 180, 90, 133, r1, 0.3, "Ülo");
-		//rauno testib, ülemine oli originaal
-		//River r3 = new River("lamp", 160, 180, 120, 133, r1, 0.3, "Ülo");
+		River r3 = new River("Keilajõgi", 160, 180, 90, 133, r1, 0.3, "Emajõgi");
 		Rivers.add(r3);
-		//System.out.printf("%.3f", r1.getLength());	
 		Drawfunctions.drawPicture(Rivers, dirtyRivers);
-		//System.out.println(r2.targetX() + " " + r2.targetY());
-		//System.out.println(r1.midX() + " " + r1.midY());
+		
 	}
 }

@@ -16,23 +16,23 @@ public class Drawfunctions{
 		g.setColor(Color.BLUE);
 		for (River r: RiverData) {
 			if(r.target == null) {
-			g.drawLine(r.startX, r.startY, r.endX, r.endY);
+			g.drawLine(r.riveroutsetX, r.riveroutsetX, r.riverstopX, r.riverstopY);
 			} else {
-				g.drawLine(r.startX, r.startY, r.targetX(), r.targetY());
-				//g.drawLine(r.targetX(), r.targetY(), r.endX, r.endY);
+				g.drawLine(r.riveroutsetX, r.riveroutsetX, r.targetX(), r.targetY());
+
 			} 
 			g.drawString(r.name, r.midX()+gap, r.midY()+gap);
 		}
 		g.setColor(Color.BLACK);
 		for (River r: DirtyRiver) {
 			if(r.target == null) {
-			g.drawLine(r.startX, r.startY, r.endX, r.endY);
+			g.drawLine(r.riveroutsetX, r.riveroutsetX, r.riverstopX, r.riverstopY);
 			} else {
-				//g.drawLine(r.startX, r.startY, r.targetX(), r.targetY());
-				g.drawLine(r.targetX(), r.targetY(), r.endX, r.endY);
+
+				g.drawLine(r.targetX(), r.targetY(), r.riverstopX, r.riverstopY);
 			} 
 			g.drawString(r.name, r.midX()+gap, r.midY()+gap);
 		}
-		ImageIO.write(bi, "png", new File("Rivers.png"));
+		ImageIO.write(bi, "png", new File("joed.png"));
 	}
 }

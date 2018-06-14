@@ -1,10 +1,10 @@
 import java.util.*;
 public class River {
 	protected String name;
-	protected int startX;
-	protected int startY;
-	protected int endX;
-	protected int endY;
+	protected int riveroutsetX;
+	protected int riveroutsetY;
+	protected int riverstopX;
+	protected int riverstopY;
 	River target;
 	protected double targetLocation;
 	protected String targetName;
@@ -12,12 +12,12 @@ public class River {
 	int targetX;
 	int targetY;
 
-	public River(String name, int startX, int startY, int endX, int endY, River target, double targetLocation, String targetName) {
+	public River(String name, int riveroutsetX, int riveroutsetY, int riverstopX, int riverstopY, River target, double targetLocation, String targetName) {
 		this.name = name;
-		this.startX = startX;
-		this.startY = startY;
-		this.endX = endX;
-		this.endY = endY;
+		this.riveroutsetX = riveroutsetX;
+		this.riveroutsetY = riveroutsetY;
+		this.riverstopX = riverstopX;
+		this.riverstopY = riverstopY;
 		this.target = target;
 		this.targetLocation = targetLocation;
 		this.target = target;
@@ -26,27 +26,27 @@ public class River {
 	}
 
 	public double getLength(){
-		double distance = Math.sqrt(Math.pow(endX-startX, 2) + Math.pow(endY-startY, 2));
+		double distance = Math.sqrt((Math.pow(riverstopX-riveroutsetX, 2) + Math.pow(riverstopY-riveroutsetY, 2)));
 		return distance;
 	}
 
 	public int midX(){
-		int midX = (int) Math.round((startX + endX)*0.5);
+		int midX = (int) Math.round((riveroutsetX + riverstopX) / 2);
 		return midX; 
 	}
 
 	public int midY() {
-		int midY = (int) Math.round((startY + endY)*0.5);
+		int midY = (int) Math.round((riveroutsetY + riverstopY) / 2);
 		return midY; 
 	}
 	
 	public int targetX() {
-		int targetX = (int) Math.round((target.startX + target.endX)*targetLocation);
+		int targetX = (int) Math.round((target.riveroutsetX + target.riverstopX)*targetLocation);
 		return targetX;
 	}
                                                                     
 	public int targetY() {
-		int targetY = (int) Math.round((target.startY + target.endY)*targetLocation);
+		int targetY = (int) Math.round((target.riveroutsetY + target.riverstopY)*targetLocation);
 		return targetY;
 	}
 
@@ -59,9 +59,7 @@ public class River {
 		this.target = target;
 		this.targetLocation = targetLocation;
 	}
-	/*public ArrayList<Point> getPointList(targetPoints) {
-		return targetPoints;
-	}*/   
+	  
 
 
 }
