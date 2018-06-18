@@ -2,7 +2,7 @@ public class Pendel{
 	
 	private double vP;
 	double pikkus;
-	int tiks = 0;
+	int tiksumine = 0;
 	int r = 0;
 	
 	
@@ -16,12 +16,13 @@ public class Pendel{
 	}
 	
 	public int ringid(Hammasratas h){
-		if(tiks == h.hammasteArv() + r * h.hammasteArv())
+		if(tiksumine == h.hammasteArv() + r * h.hammasteArv())
 			r += 1;
 		return r;
 	}
 	
 	public String valjasta(){
+		tiksumine = tiksumine + 1;
 		return "TIKK TAKK";
 	}
 	
