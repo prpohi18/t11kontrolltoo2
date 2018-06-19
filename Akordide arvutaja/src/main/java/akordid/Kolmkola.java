@@ -6,7 +6,7 @@ public class Kolmkola {
 	   y=põhitoon;
    }
    public Kolmkola(String nimetus){
-	   this(MuusikaAbi.leiaKõrgus(nimetus));
+	   this(MuusikaAbi.leiaKorgus(nimetus));
    }
    public int toonika(){
 	   return y;
@@ -21,7 +21,7 @@ public class Kolmkola {
 	   return y+" "+terts()+" "+kvint();
    }
    public String tekstina(){
-	   return MuusikaAbi.leiaTäht(y)+" "+MuusikaAbi.leiaTäht(terts())+
-			   " "+MuusikaAbi.leiaTäht(kvint());
+	   return MuusikaAbi.leiaTaht(y)+" "+MuusikaAbi.leiaTaht(terts())+
+			   " "+MuusikaAbi.leiaTaht(kvint());
    }
 }
